@@ -1,0 +1,46 @@
+{
+  "name": "@sig-ui/dom",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sig-ui/dom.git"
+  },
+  "homepage": "https://github.com/sig-ui/dom",
+  "bugs": "https://github.com/sig-ui/dom/issues",
+  "description": "Runtime DOM utilities, animation, and device context for SigUI",
+  "author": "SigID, gentix.dev",
+  "keywords": [
+    "sigui",
+    "design-system",
+    "design-tokens",
+    "ui",
+    "dom",
+    "animation"
+  ],
+  "files": [
+    "src",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": { "types": "./src/index.d.ts", "default": "./src/index.js" },
+    "./manager": { "types": "./src/manager.d.ts", "default": "./src/manager.js" },
+    "./viz": { "types": "./src/viz.d.ts", "default": "./src/viz.js" },
+    "./inspector": { "types": "./src/inspector-export.d.ts", "default": "./src/inspector-export.js" },
+    "./canvas": { "types": "./src/canvas.d.ts", "default": "./src/canvas.js" },
+    "./animate": { "types": "./src/animate/index.d.ts", "default": "./src/animate/index.js" },
+    "./spacing": { "types": "./src/spacing/index.d.ts", "default": "./src/spacing/index.js" }
+  },
+  "dependencies": {
+    "@sig-ui/core": "workspace:*",
+    "@sig-ui/theme": "workspace:*"
+  },
+  "scripts": {
+    "test": "bun test"
+  }
+}
