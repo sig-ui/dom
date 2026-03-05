@@ -83,7 +83,9 @@ function morphPathRaf(el, fromPath, toPath, duration, easingCss, easingTuple) {
       startTime = now;
     const elapsed = now - startTime;
     const t = Math.min(elapsed / duration, 1);
-    const easedT = isLinearCss ? sampleLinearEasing(easingCss, t) : cubicBezier(...easingTuple, t);
+    const easedT = isLinearCss
+      ? sampleLinearEasing(easingCss, t)
+      : cubicBezier(easingTuple[0], easingTuple[1], easingTuple[2], easingTuple[3], t);
     el.setAttribute("d", interpolatePath(fromPath, toPath, easedT));
     if (t < 1) {
       rafId = requestAnimationFrame(tick);

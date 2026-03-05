@@ -150,6 +150,11 @@ export function resolveRole(name, context) {
   }
   return null;
 }
+/**
+ * @param {string} name
+ * @param {ResolverContext} context
+ * @returns {ResolvedRole | null}
+ */
 function resolveInteractionMeta(name, context) {
   if (name.endsWith("-subtle")) {
     const baseName = name.slice(0, -7);
@@ -172,7 +177,9 @@ function resolveInteractionMeta(name, context) {
   if (roleMapping) {
     const { hover, active } = getInteractionShades(roleMapping.shade, context.mode);
     const targetShade = name.endsWith("-hover") ? hover : active;
-    return { role: name, palette: roleMapping.palette, shade: targetShade, type: "interaction" };
+    /** @type {ResolvedRole} */
+    const resolved = { role: name, palette: roleMapping.palette, shade: targetShade, type: "interaction" };
+    return resolved;
   }
   return null;
 }

@@ -6,9 +6,9 @@
  */
 /**
  * removeWithAnimation.
- * @param {*} element
- * @param {*} options
- * @returns {*}
+ * @param {Element} element
+ * @param {{ exit: (element: Element) => { finished: Promise<unknown> } }} options
+ * @returns {Promise<void>}
  */
 export async function removeWithAnimation(element, options) {
   const controls = options.exit(element);

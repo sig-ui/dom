@@ -20,12 +20,15 @@ import { watchDarkMode } from "./dark-mode.js";
 import { resolveColor } from "./resolver.js";
 import { injectCSS, removeCSS } from "./css-inject.js";
 import { getCategoricalPalette, getSequentialScale, getDivergingScale } from "./data-viz.js";
+/** @typedef {{ l: number, c: number, h: number, alpha: number }} OklchColor */
 
 export class ColorManager {
   config;
   cache;
   _mode;
+  /** @type {Record<string, Record<number, OklchColor>>} */
   lightRamps = {};
+  /** @type {Record<string, Record<number, OklchColor>>} */
   darkRamps = {};
   lightRoles;
   darkRoles;
@@ -179,10 +182,12 @@ export class ColorManager {
     }
   }
   getResolverContext() {
+    /** @type {"light" | "dark"} */
+    const mode = this._mode === "dark" ? "dark" : "light";
     return {
-      ramps: this._mode === "dark" ? this.darkRamps : this.lightRamps,
-      roles: this._mode === "dark" ? this.darkRoles : this.lightRoles,
-      mode: this._mode
+      ramps: mode === "dark" ? this.darkRamps : this.lightRamps,
+      roles: mode === "dark" ? this.darkRoles : this.lightRoles,
+      mode
     };
   }
 }

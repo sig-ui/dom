@@ -103,7 +103,7 @@ export function resolveEasing(value) {
   }
   if (value.startsWith("spring:")) {
     const presetName = value.slice(7);
-    const presets = getSpringPresets();
+    const presets = getSpringPresets({});
     const config = presets[presetName];
     if (config) {
       return springToLinear(config);

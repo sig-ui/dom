@@ -14,6 +14,11 @@ import {
   resolveGamut,
   DEFAULT_DEVICE_CONTEXT
 } from "@sig-ui/core";
+/** @typedef {{ mobile?: boolean, formFactor?: string }} NavigatorUserAgentDataLike */
+/** @returns {NavigatorUserAgentDataLike | undefined} */
+function getUserAgentData() {
+  return /** @type {Navigator & { userAgentData?: NavigatorUserAgentDataLike }} */ (navigator).userAgentData;
+}
 /**
  * collectClassificationSignals.
  * @returns {*}
@@ -32,8 +37,8 @@ export function collectClassificationSignals() {
     pointerCoarse: matchMedia("(pointer: coarse)").matches,
     pointerFine: matchMedia("(pointer: fine)").matches,
     maxTouchPoints: navigator.maxTouchPoints ?? 0,
-    formFactor: navigator.userAgentData?.formFactor,
-    mobile: navigator.userAgentData?.mobile
+    formFactor: getUserAgentData()?.formFactor,
+    mobile: getUserAgentData()?.mobile
   };
   return signals;
 }
@@ -128,7 +133,7 @@ export function detectTier() {
     return 1;
   if ("AmbientLightSensor" in globalThis)
     return 3;
-  if (navigator.userAgentData)
+  if (getUserAgentData())
     return 2;
   return 1;
 }

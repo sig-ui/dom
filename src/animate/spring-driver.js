@@ -40,10 +40,10 @@ export function isSettled(state) {
 }
 function resolveSpringConfig(spring) {
   if (spring === undefined) {
-    return getSpringPresets().default;
+    return getSpringPresets({}).default;
   }
   if (typeof spring === "string") {
-    const presets = getSpringPresets();
+    const presets = getSpringPresets({});
     return presets[spring] ?? presets.default;
   }
   return spring;
