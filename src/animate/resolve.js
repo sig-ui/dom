@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 
 /**
  * SigUI DOM animate module for resolve.

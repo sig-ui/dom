@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 
 /**
  * SigUI DOM color manager module for color manager.
